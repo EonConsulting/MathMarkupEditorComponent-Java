@@ -1,0 +1,130 @@
+.noMarginPadding {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.ui-widget {
+    font-size: 12px !important;
+}
+.ui-layout-north {
+    z-index:20 !important;
+    overflow:visible !important;;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+}
+.ui-widget-header {
+    text-align: center;
+    text-transform: uppercase;
+}
+.ui-widget-header .footer {
+    text-transform: lowercase;
+}
+.ui-datatable .ui-datatable-footer .footer-section {
+    text-align: left;
+}
+.ui-layout-west {
+    z-index: 20 !important;
+    overflow: visible !important;
+}
+.ui-layout-west .ui-layout-unit-content {
+    overflow-y: scroll !important;
+}
+.column {
+    font-weight: bold;
+    background-color: menu;
+}
+
+.toolbarButtonRightPad {
+    margin-right: 5px;
+}
+
+.ui-icon-treeCorner{
+    background-image: url("#{resource['images/treeCorner.gif']}") !important;
+}
+.ui-icon-greenLight{
+    background-image: url("#{resource['images/green_light.png']}") !important;
+}
+.ui-icon-yellowLight{
+    background-image: url("#{resource['images/yellow_light.png']}") !important;
+}
+.ui-icon-redLight{
+    background-image: url("#{resource['images/red_light.png']}") !important;
+}
+
+.my-icon {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.icon-home {
+    background-image: url("#{resource['images/icons/Home2.gif']}") !important;
+}
+.icon-plus {
+    background-image: url("#{resource['images/icons/Plus.gif']}") !important;
+}
+.icon-enable {
+    background-image: url("#{resource['images/icons/Ok.gif']}") !important;
+}
+.icon-disable {
+    background-image: url("#{resource['images/icons/Forbidden.gif']}") !important;
+}
+.icon-list {
+    background-image: url("#{resource['images/icons/Tree.gif']}") !important;
+}
+.icon-question {
+    background-image: url("#{resource['images/icons/Question.gif']}") !important;
+}
+.icon-refresh {
+    background-image: url("#{resource['images/icons/Refresh.gif']}") !important;
+}
+.icon-write {
+    background-image: url("#{resource['images/icons/Write.gif']}") !important;
+}
+.icon-print {
+    background-image: url("#{resource['images/icons/Printer.gif']}") !important;
+}
+.icon-gear {
+    background-image: url("#{resource['images/icons/Gear.gif']}") !important;
+}
+.icon-stats {
+    background-image: url("#{resource['images/icons/Stats3.gif']}") !important;
+}
+
+.ui-icon-1{
+    background-image: url("#{resource['images/green_light.png']}") !important;
+}
+.ui-icon-active{
+    background-image: url("#{resource['images/green_light.png']}") !important;
+}
+.ui-icon-Active{
+    background-image: url("#{resource['images/green_light.png']}") !important;
+}
+
+.ui-icon-2{
+    background-image: url("#{resource['images/yellow_light.png']}") !important;
+}
+.ui-icon-Incomplete{
+    background-image: url("#{resource['images/yellow_light.png']}") !important;
+}
+
+.ui-icon-3{
+    background-image: url("#{resource['images/red_light.png']}") !important;
+}
+.ui-icon-Suspended{
+    background-image: url("#{resource['images/red_light.png']}") !important;
+}
+.ui-icon-redQuestion{
+    background-image: url("#{resource['images/question_red.ico']}") !important;
+}
+
+.ui-icon-enabledTreeItem_true{
+    background-image: url("#{resource['images/green_light.png']}") !important;
+}
+.ui-icon-enabledTreeItem_false{
+    background-image: url("#{resource['images/red_light.png']}") !important;
+}
