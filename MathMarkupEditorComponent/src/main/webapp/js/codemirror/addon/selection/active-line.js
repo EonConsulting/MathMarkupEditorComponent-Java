@@ -1,11 +1,37 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+/**
+* Copyright (c) 2016, University of South Africa and/or its affiliates. All rights reserved.
+* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+*
+* This code is free software; you can redistribute it and/or modify it
+* under the terms of the GNU General Public License version 2 only, as
+* published by the Free Software Foundation.
+*
+* This code is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+* version 2 for more details (a copy is included in the LICENSE file that
+* accompanied this code).
+*
+* You should have received a copy of the GNU General Public License version
+* 2 along with this work; if not, write to the Free Software Foundation,
+* Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+*
+* @author      Mufaro Benedict
+* @version     1.0 
+**/
 
-// Because sometimes you need to style the cursor's line.
-//
-// Adds an option 'styleActiveLine' which, when enabled, gives the
-// active line's wrapping <div> the CSS class "CodeMirror-activeline",
-// and gives its background <div> the class "CodeMirror-activeline-background".
+
+
+/**
+ * 
+ * Because sometimes you need to style the cursor's line.
+
+ * Adds an option 'styleActiveLine' which, when enabled, gives the
+ * active line's wrapping <div> the CSS class "CodeMirror-activeline",
+ * and gives its background <div> the class "CodeMirror-activeline-background".
+ * @param {type} mod
+ * @returns {undefined}
+ */
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

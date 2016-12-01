@@ -1,47 +1,72 @@
-// CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+/**
+* Copyright (c) 2016, University of South Africa and/or its affiliates. All rights reserved.
+* DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+*
+* This code is free software; you can redistribute it and/or modify it
+* under the terms of the GNU General Public License version 2 only, as
+* published by the Free Software Foundation.
+*
+* This code is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+* FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+* version 2 for more details (a copy is included in the LICENSE file that
+* accompanied this code).
+*
+* You should have received a copy of the GNU General Public License version
+* 2 along with this work; if not, write to the Free Software Foundation,
+* Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+*
+* @author      Mufaro Benedict
+* @version     1.0 
+**/
 
-// Glue code between CodeMirror and Tern.
-//
-// Create a CodeMirror.TernServer to wrap an actual Tern server,
-// register open documents (CodeMirror.Doc instances) with it, and
-// call its methods to activate the assisting functions that Tern
-// provides.
-//
-// Options supported (all optional):
-// * defs: An array of JSON definition data structures.
-// * plugins: An object mapping plugin names to configuration
-//   options.
-// * getFile: A function(name, c) that can be used to access files in
-//   the project that haven't been loaded yet. Simply do c(null) to
-//   indicate that a file is not available.
-// * fileFilter: A function(value, docName, doc) that will be applied
-//   to documents before passing them on to Tern.
-// * switchToDoc: A function(name, doc) that should, when providing a
-//   multi-file view, switch the view or focus to the named file.
-// * showError: A function(editor, message) that can be used to
-//   override the way errors are displayed.
-// * completionTip: Customize the content in tooltips for completions.
-//   Is passed a single argument—the completion's data as returned by
-//   Tern—and may return a string, DOM node, or null to indicate that
-//   no tip should be shown. By default the docstring is shown.
-// * typeTip: Like completionTip, but for the tooltips shown for type
-//   queries.
-// * responseFilter: A function(doc, query, request, error, data) that
-//   will be applied to the Tern responses before treating them
-//
-//
-// It is possible to run the Tern server in a web worker by specifying
-// these additional options:
-// * useWorker: Set to true to enable web worker mode. You'll probably
-//   want to feature detect the actual value you use here, for example
-//   !!window.Worker.
-// * workerScript: The main script of the worker. Point this to
-//   wherever you are hosting worker.js from this directory.
-// * workerDeps: An array of paths pointing (relative to workerScript)
-//   to the Acorn and Tern libraries and any Tern plugins you want to
-//   load. Or, if you minified those into a single script and included
-//   them in the workerScript, simply leave this undefined.
+/**
+ * 
+ * Glue code between CodeMirror and Tern.
+
+ *  Create a CodeMirror.TernServer to wrap an actual Tern server,
+ *  register open documents (CodeMirror.Doc instances) with it, and
+ *  call its methods to activate the assisting functions that Tern
+ *  provides.
+
+ * Options supported (all optional):
+ * defs: An array of JSON definition data structures.
+ * plugins: An object mapping plugin names to configuration
+ * options.
+ * getFile: A function(name, c) that can be used to access files in
+ * the project that haven't been loaded yet. Simply do c(null) to
+ * indicate that a file is not available.
+ * fileFilter: A function(value, docName, doc) that will be applied
+ * to documents before passing them on to Tern.
+ * switchToDoc: A function(name, doc) that should, when providing a
+ * multi-file view, switch the view or focus to the named file.
+ * showError: A function(editor, message) that can be used to
+ * override the way errors are displayed.
+ * completionTip: Customize the content in tooltips for completions.
+ * Is passed a single argument—the completion's data as returned by
+ * Tern—and may return a string, DOM node, or null to indicate that
+ * no tip should be shown. By default the docstring is shown.
+ * typeTip: Like completionTip, but for the tooltips shown for type
+ * queries.
+ * responseFilter: A function(doc, query, request, error, data) that
+ * will be applied to the Tern responses before treating them
+
+
+ * It is possible to run the Tern server in a web worker by specifying
+ * these additional options:
+ * useWorker: Set to true to enable web worker mode. You'll probably
+ * want to feature detect the actual value you use here, for example
+ * !!window.Worker.
+ * workerScript: The main script of the worker. Point this to
+ * wherever you are hosting worker.js from this directory.
+ * workerDeps: An array of paths pointing (relative to workerScript)
+ * to the Acorn and Tern libraries and any Tern plugins you want to
+ * load. Or, if you minified those into a single script and included
+ * them in the workerScript, simply leave this undefined. 
+ * 
+ * @param {type} mod
+ * @returns {undefined}
+ */
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
