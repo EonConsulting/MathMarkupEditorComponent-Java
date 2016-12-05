@@ -1,14 +1,13 @@
 .button2 {
     background-color: #23384c; /* Green */
     border: 5px;
-    width: 200px;
+    width: 120px;
     color: orange;
-    padding: 15px 32px;
     text-align: center;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
