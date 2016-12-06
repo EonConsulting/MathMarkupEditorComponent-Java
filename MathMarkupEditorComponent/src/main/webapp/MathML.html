@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     <title> UNISA|MathML Editor </title>
+
 	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet" >
 	<script src="js/jquery-ui/external/jquery/jquery.js"></script>
 	<script src="js/jquery-ui/jquery-ui.min.js"></script>
@@ -17,37 +17,31 @@
 	<script src='js/spectrum.js'></script>
 
 	<link href="css/editor.css" rel="stylesheet" >
-	<link href="styles/styles.mini.css" rel="stylesheet" >
-
 	<script src="lang/en.js"></script>
 	<script src="fonts/fmathFormulaFonts.js"></script>
 	<script src="js/fmathEditorC.js"></script>
 	<script src="js/fmathEditorJQuery.js"></script>
 </head>
-<body >
-<div id="main">
-  <h2 style="font-size:30px;cursor:pointer"  onclick="openNav()">&#9776; Select Editor</h2>
-</div>
+<body>
 
-<center>
-<button class="button2" onclick="openEditor()" value="Show FMath Editor"/><h5>Show MathML Editor</h5></button>
-<button class="button2"onclick="changeMathML()" value="Change MathML"/><h5>Change MathML</h5></button>
-<button class="button2" onclick="getMathML_CHARS()" value="Get MathML Char"/><h5>Get MathML Char</h5></button>
-<button class="button2" onclick="getPng()" value="Get Image Png"/><h5>Get Image Png</h5></button>
-<button class="button2" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/><h5>Get MathML Entities</h5></button>
-<button class="button2" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/><h5>Get MathML Unicode</h5></button>
-<!--<input type="button" onclick="setLatex()" value="Set Latex"/>
-<button class="button2" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>Get MathML Unicode</button>
-<input type="button" onclick="getLatex()" value="Get Latex"/>
-<input type="button" onclick="getPng()" value="Get Image Png"/>-->
-<br/>
-</center>
+
+<br><br>
 <center>
 <br><br>
+<a href="index.html"><input type="button" value="Home"/></a>
+<input type="button" onclick="openEditor()" value="Show FMath Editor"/>
+<input type="button" onclick="changeMathML()" value="Change MathML"/>
+<input type="button" onclick="getMathML_CHARS()" value="Get MathML Char"/>
+<input type="button" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
+<input type="button" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>
+<input type="button" onclick="getPng()" value="Get Image Png"/>
+</center>
+<br/>
+<center>
+<br><br><br><br>
 <table>
-
 	<tr>
-		<p style="color: orange">Mathml:</p>
+		<td>Mathml:</td>
 		<td>
 <textarea id="textarea" style='width:600px; height:150px'>
 &lt;math mathsize='40'&gt;
@@ -57,37 +51,19 @@
 &lt;/math&gt;
 </textarea>
 		</td>
-		<!--<td>Latex:</td>
-		<td>
-<textarea id="textareaL" style='width:300px; height:50px'>\[x^2+2x+1\]</textarea>
-		</td>-->
 	</tr>
 </table>
 </center>
+<br/>
+Image:<input id="text"/>
+<br/>
+<img id="image"/>
 
-<br/>
-<center>
- <p style="color: orange">Image:<input id="text"/></p>
- <br/>
-<img id="image"  />
-</center>
-<br/>
 <center>
 	<div id="editor1"></div>
 	<br/>
 </center>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <br><br><br><br>
-  <a href="index.html">Home</a>
-   <br>
-  <a href="MathML.html">MathML Editor</a>
-  <br>
-  <a href="LaTex.html">LaTeX Editor</a>
-  <br>
-  <a href="#">Open XML</a>
-</div>
 
 <script>
 	FMATH.ApplicationConfiguration.setFolderUrlForFonts("fonts");
@@ -155,20 +131,6 @@
 		}
 	}
 
-</script>
-
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
 </script>
 
 </body>
