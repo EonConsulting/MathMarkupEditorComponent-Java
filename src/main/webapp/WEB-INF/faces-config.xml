@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <el-resolver>com.unisa.mathcomponent.controller.util.JsfCrudELResolver</el-resolver>
+    </application>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>welcome</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>fomulaeJpa</managed-bean-name>
+        <managed-bean-class>com.unisa.mathcomponent.ejb.FomulaeFacade</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>fomulae</managed-bean-name>
+        <managed-bean-class>com.unisa.mathcomponent.controller.FomulaeController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>com.unisa.mathcomponent.entity.Fomulae</converter-for-class>
+        <converter-class>com.unisa.mathcomponent.controller.FomulaeConverter</converter-class>
+    </converter>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/faces/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>
+        <location>/faces/crud/exception/error.xhtml</location>
+    </error-page>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+</faces-config>

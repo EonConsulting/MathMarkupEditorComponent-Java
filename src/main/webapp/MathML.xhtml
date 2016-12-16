@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>UNISA|MathML Editor</title>
+        <title>UNISA | MathML Editor</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -36,20 +36,26 @@
 
             <br/>
             <div style="width:72%; margin:0 auto;">
+                
+                <select onchange="location=this.value" style="width: 150px; color: orange;background:#346692; height: 40px; border-radius: 5px;">
+                    <option value="#">Select Editor</option>
+                    <option value="index.html">HOME</option>
+                    <option value="MathML.xhtml"> MathML Editor</option>
+                    <option value="LaTeX.xhtml"> LaTeX Editor</option>
+                </select>
 
-                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show LaTeX Editor"/>
+                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show MathML Editor"/>
 <!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
-                <input type="button" class="btn btn-primary btn-xs" onclick="setMathML()" value="Set LaTeX"/>
+                <input type="button" class="btn btn-primary btn-xs" onclick="setMathML()" value="Set MathML"/>
 
-                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Get Formala" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formala" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
                     <f:ajax execute="@form" render="text" />
                 </h:commandButton>
-                
-               
+     
                 <hr/>
                 
                 <div id="editor1" style="margin-top: 20px;"></div>
@@ -60,28 +66,30 @@
                 Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
                 
                 
-                Description<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
+                Description:<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
                <img id="image"/>
+               
+               <br/><br/>
 
                 <table class="table table-bordered">
                     <tr class="info">
-<!--                        <td><strong>Math ML</strong></td>-->
-                        <td><Strong>LaTeX</Strong></td>
+                        <td><strong>Math ML</strong></td>
+<!--                        <td><Strong>LaTeX</Strong></td>-->
                     </tr>
                     <tr>
-<!--                        <td>
-                            <textarea id="textarea" style="width: 900px; height: 150px; margin: 0px;">
+                        <td>
+                            <textarea id="textarea" style="width: 965px; height: 170px; margin: 0px;">
 &lt;math mathsize='40'&gt;
 	&lt;mtext&gt;AB&lt;/mtext&gt;
 	&lt;mo&gt;&#xB1;&lt;/mo&gt;
 	&lt;mtext&gt;CD&lt;/mtext&gt;
 &lt;/math&gt;
                             </textarea>
-                        </td>-->
-
-                        <td>
-                            <textarea id="textareaL" style="width: 465px; height: 270px; margin: 0px;">\[x^2+2x+1\]</textarea>
                         </td>
+
+<!--                        <td>
+                            <textarea id="textareaL" style="width: 465px; height: 270px; margin: 0px;">\[x^2+2x+1\]</textarea>
+                        </td>-->
                     </tr>
                 </table>
                 <br/>
@@ -164,5 +172,9 @@
 
             </script>
         </h:form>
+        
+                <h:form>
+                    <h:commandLink action="#{fomulae.listSetup}" value="Show All Fomulae Items"/>
+                </h:form>
     </h:body>
 </html>

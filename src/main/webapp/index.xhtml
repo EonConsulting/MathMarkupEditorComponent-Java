@@ -7,28 +7,34 @@
 
     <f:view contentType="text/html">
         <h:head>
-           
-                
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <link rel="shortcut icon" type="image/x-icon" href="./resources/images/logo.ico" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <style>
-                    html {
-                        margin: 0px auto;
-                        height: 100%;
-                    }
-                    body {
-                        margin: 0px auto;
-                        height: 100%;
-                    }
-                </style>
-            
-           
+
+
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <link rel="shortcut icon" type="image/x-icon" href="./resources/images/logo.ico" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <style>
+                html {
+                    margin: 0px auto;
+                    height: 100%;
+                }
+                body {
+                    margin: 0px auto;
+                    height: 100%;
+                }
+            </style>
+
+
         </h:head>
 
         <h:body>
             <iframe width="100%" height="100%" src="editor.xhtml"></iframe>
-        </h:body>
+            
+            
+                <h:form>
+                    <h:commandLink action="#{fomulae.listSetup}" value="Show All Fomulae Items"/>
+                </h:form>
+            </h:body>
+
 
     </f:view>
 </html>

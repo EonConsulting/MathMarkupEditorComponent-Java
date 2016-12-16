@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListJobTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form >
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListIncidentEmpty}" rendered="#{jobController.items.rowCount == 0}"/>
+ <h3>List Of Saved Fomulaes </h3>
+                <h:dataTable value="#{fomulae.fomulaeItems}" var="item" border="5" width="1000" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 2px">
+                   
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="BaseString Image"/>
+                        </f:facet>
+                        <img  src="#{item.baseString}" alt="Profile Picture" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="SubjectId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.subjectId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ActiveInd"/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox disabled="true" value="#{item.activeInd}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="description"/>
+                        </f:facet>
+                        <h:outputText value="#{item.description}"/>
+                    </h:column>
+                    
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
