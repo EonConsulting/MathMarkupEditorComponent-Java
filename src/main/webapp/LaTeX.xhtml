@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title> UNISA | LaTeX Editor</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+        <link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+        <script src="js/jquery-ui/external/jquery/jquery.js"></script>
+        <script src="js/jquery-ui/jquery-ui.min.js"></script>
+
+        <link href="js/codemirror/lib/codemirror.css" rel="stylesheet" />
+        <script src="js/codemirror/lib/codemirror.js"></script>
+        <script src="js/codemirror/mode/xml/xml.js"></script>
+        <script src="js/codemirror/addon/selection/active-line.js"></script>
+
+        <link href='css/spectrum.css' rel='stylesheet' />
+        <script src='js/spectrum.js'></script>
+
+        <link href="css/editor.css" rel="stylesheet" />
+        <script src="lang/en.js"></script>
+        <script src="fonts/fmathFormulaFonts.js"></script>
+        <script src="js/fmathEditorC.js"></script>
+        <script src="js/fmathEditorJQuery.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body onload="openEditor()">
+        <h:form>
+
+            <br/>
+            <div style="width:72%; margin:0 auto;">
+
+
+                <select onchange="location = this.value" style="width: 150px; color: orange;background: #346692; height: 25px; border-radius: 5px;">
+                    <option value="#">Select Editor</option>
+                    <option value="index.html">HOME</option>
+                    <option value="LaTeX.xhtml">LaTeX Editor</option>
+                    <option value="MathML.xhtml">MathML Editor</option>
+                </select>
+                     &nbsp;
+                     &nbsp;
+                     &nbsp;
+                     &nbsp;
+<!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show LaTeX Editor"/>-->
+                <!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
+                <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set LaTeX"/>
+
+                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formula" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+                    <f:ajax execute="@form" render="text" />
+                </h:commandButton>
+                
+                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access Saved Fomulae" target="_blank"/>
+
+
+                <hr/>
+
+                <div id="editor1" style="margin-top: 20px;"></div>
+
+                <hr/>
+
+
+                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
+
+
+                Description:<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
+                <img id="image"/>
+
+                <br/><br/>
+
+                <table class="table table-bordered">
+                    <tr class="info">
+                        <!--                        <td><strong>Math ML</strong></td>-->
+                        <td><Strong>LaTeX</Strong></td>
+                    </tr>
+                    <tr>
+                        <!--                        <td>
+                                                    <textarea id="textarea" style="width: 900px; height: 150px; margin: 0px;">
+                        &lt;math mathsize='40'&gt;
+                                &lt;mtext&gt;AB&lt;/mtext&gt;
+                                &lt;mo&gt;&#xB1;&lt;/mo&gt;
+                                &lt;mtext&gt;CD&lt;/mtext&gt;
+                        &lt;/math&gt;
+                                                    </textarea>
+                                                </td>-->
+
+                        <td>
+                            <textarea id="textareaL" style="width: 965px; height: 170px; margin: 0px;">\[x^2+2x+1\]</textarea>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+<!--                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
+                <img id="image"/>
+                
+                Description<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
+                -->
+
+
+                <br/>
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </div>
+            <script>
+                FMATH.ApplicationConfiguration.setFolderUrlForFonts("fonts");
+                FMATH.ApplicationConfiguration.setFolderUrlForGlyphs("glyphs");
+
+                var e1;
+                function openEditor() {
+                    if (e1 == null) {
+                        e1 = $("#editor1").mathEditor({width: 1000, height: 400});
+                        e1.mathEditor("setSaveCallback", clientSaveMethod);
+                        e1.mathEditor("setMathML", '<math mathsize="40"><mi>X</mi><mo>+</mo><mi>Y</mi></math>');
+                    }
+                }
+
+                function clientSaveMethod() {
+                    // get info from editor ex: get image
+                    getPng();
+                }
+
+                function setLatex() {
+                    if (e1 != null) {
+                        var ta = document.getElementById("textareaL");
+                        e1.mathEditor("setLatex", ta.value);
+                    }
+                }
+
+                function getLatex() {
+                    if (e1 != null) {
+                        alert(e1.mathEditor("getLatex"));
+                    }
+                }
+
+                function changeMathML() {
+                    if (e1 != null) {
+                        var ta = document.getElementById("textarea");
+                        e1.mathEditor("setMathML", ta.value);
+                    }
+                }
+
+                function getMathML_CHARS() {
+                    if (e1 != null) {
+                        // type could be CHARS, ENTITIES or UNICODE;
+                        alert(e1.mathEditor("getMathML", "CHARS", "true"));
+                    }
+                }
+
+                function getMathML_ENTITIES() {
+                    if (e1 != null) {
+                        // type could be CHARS, ENTITIES or UNICODE;
+                        alert(e1.mathEditor("getMathML", "ENTITIES", "true"));
+                    }
+                }
+                function getMathML_UNICODE() {
+                    if (e1 != null) {
+                        // type could be CHARS, ENTITIES or UNICODE;
+                        alert(e1.mathEditor("getMathML", "UNICODE", "true"));
+                    }
+                }
+                function getPng(e) {
+                    if (e1 != null) {
+                        var img = document.getElementById("image");
+                        //var elem = document.getElementById("text").value;
+                        img.src = e1.mathEditor("getImage", "png");
+                        document.getElementsByClassName("imageClass")[0].value = img.src;
+
+                    }
+                }
+
+            </script>
+        </h:form>
+    </h:body>
+</html>
