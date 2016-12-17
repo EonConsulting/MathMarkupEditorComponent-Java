@@ -15,9 +15,9 @@
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListIncidentEmpty}" rendered="#{jobController.items.rowCount == 0}"/>
-                <h3>List Of Saved Fomulae From Database </h3>
+ <h3>List Of Saved Fomulaes </h3>
                 <h:dataTable value="#{fomulae.fomulaeItems}" var="item" border="5" width="1000" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 2px">
-
+                   
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Id"/>
@@ -42,14 +42,14 @@
                         </f:facet>
                         <h:selectBooleanCheckbox disabled="true" value="#{item.activeInd}"/>
                     </h:column>
-
+                    
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="description"/>
                         </f:facet>
                         <h:outputText value="#{item.description}"/>
                     </h:column>
-
+                    
                 </h:dataTable>
             </h:form>
         </ui:define>
