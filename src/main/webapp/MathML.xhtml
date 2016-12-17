@@ -31,7 +31,7 @@
         <script src="js/fmathEditorJQuery.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
+    <h:body onload="openEditor()">
         <h:form>
 
             <br/>
@@ -43,8 +43,11 @@
                     <option value="MathML.xhtml"> MathML Editor</option>
                     <option value="LaTeX.xhtml"> LaTeX Editor</option>
                 </select>
-
-                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show MathML Editor"/>
+                     &nbsp;
+                     &nbsp;
+                     &nbsp;
+                     &nbsp;
+<!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show MathML Editor"/>-->
 <!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
@@ -52,7 +55,7 @@
                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
                 <input type="button" class="btn btn-primary btn-xs" onclick="setMathML()" value="Set MathML"/>
 
-                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formala" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formula" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
                     <f:ajax execute="@form" render="text" />
                 </h:commandButton>
      
