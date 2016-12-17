@@ -58,6 +58,8 @@
                 <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formula" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
                     <f:ajax execute="@form" render="text" />
                 </h:commandButton>
+                
+                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access Saved Fomulae" target="_blank"/>
      
                 <hr/>
                 
@@ -175,9 +177,5 @@
 
             </script>
         </h:form>
-        
-                <h:form>
-                    <h:commandLink action="#{fomulae.listSetup}" value="Show All Fomulae Items"/>
-                </h:form>
     </h:body>
 </html>
