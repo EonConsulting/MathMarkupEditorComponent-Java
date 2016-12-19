@@ -39,7 +39,6 @@
                 
                 <select onchange="location=this.value" style="width: 150px; color: orange;background:#346692; height: 25px; border-radius: 5px;">
                     <option value="#">Select Editor</option>
-                    <option value="index.html">HOME</option>
                     <option value="MathML.xhtml"> MathML Editor</option>
                     <option value="LaTeX.xhtml"> LaTeX Editor</option>
                 </select>
@@ -68,18 +67,17 @@
                 <hr/>
                 
                 
-                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
-                
-                
-                Description:<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
-               <img id="image"/>
-               
-               <br/><br/>
+               Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px;height: 0px;"/>
+                <img id="image"/>
 
-                <table class="table table-bordered">
+                <br/><br/>
+
+                Description:<h:inputTextarea value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
+
+<!--                <table class="table table-bordered">
                     <tr class="info">
                         <td><strong>Math ML</strong></td>
-<!--                        <td><Strong>LaTeX</Strong></td>-->
+                        <td><Strong>LaTeX</Strong></td>
                     </tr>
                     <tr>
                         <td>
@@ -92,11 +90,11 @@
                             </textarea>
                         </td>
 
-<!--                        <td>
+                        <td>
                             <textarea id="textareaL" style="width: 465px; height: 270px; margin: 0px;">\[x^2+2x+1\]</textarea>
-                        </td>-->
+                        </td>
                     </tr>
-                </table>
+                </table>-->
                 <br/>
 <!--                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
                 <img id="image"/>
