@@ -52,6 +52,19 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.tsugi</groupId>
+            <artifactId>tsugi-java</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.tsugi</groupId>
+            <artifactId>tsugi-util</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -109,6 +122,16 @@
             <id>PrimeFaces-maven-lib</id>
             <layout>default</layout>
             <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+        
+        <repository>
+            <id>ossrh</id>
+            <name>Sonatype</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 </project>
