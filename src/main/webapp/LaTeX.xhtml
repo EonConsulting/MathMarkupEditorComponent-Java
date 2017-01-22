@@ -37,17 +37,18 @@
             <br/>
             <div style="width:72%; margin:0 auto;">
 
-
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <br/>
                 <select onchange="location = this.value" style="width: 150px; color: orange;background: #346692; height: 25px; border-radius: 5px;">
                     <option value="#">Select Editor</option>
                     <option value="LaTeX.xhtml">LaTeX Editor</option>
                     <option value="MathML.xhtml">MathML Editor</option>
                 </select>
-                     &nbsp;
-                     &nbsp;
-                     &nbsp;
-                     &nbsp;
-<!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show LaTeX Editor"/>-->
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show LaTeX Editor"/>-->
                 <!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
                                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
                                 <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
@@ -55,10 +56,10 @@
                                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set LaTeX"/>
 
-                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formula" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
-                    <f:ajax execute="@form" render="text" />
+                <h:commandButton onclick="getMathML_ENTITIES(),getPng() ;" style="margin-left: 55px;" value="Save Formula Java" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+
                 </h:commandButton>
-                
+
                 <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access Saved Fomulae" target="_blank"/>
 
 
@@ -75,39 +76,10 @@
                 <br/><br/>
 
                 Description:<h:inputTextarea value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
-                
-
-<!--                <table class="table table-bordered">
-                    <tr class="info">
-                                                <td><strong>Math ML</strong></td>
-                        <td><Strong>LaTeX</Strong></td>
-                    </tr>
-                    <tr>
-                                                <td>
-                                                    <textarea id="textarea" style="width: 900px; height: 150px; margin: 0px;">
-                        &lt;math mathsize='40'&gt;
-                                &lt;mtext&gt;AB&lt;/mtext&gt;
-                                &lt;mo&gt;&#xB1;&lt;/mo&gt;
-                                &lt;mtext&gt;CD&lt;/mtext&gt;
-                        &lt;/math&gt;
-                                                    </textarea>
-                                                </td>
-
-                        <td>
-                            <textarea id="textareaL" style="width: 965px; height: 170px; margin: 0px;">\[x^2+2x+1\]</textarea>
-                        </td>
-                    </tr>
-                </table>-->
-                <br/>
-<!--                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
-                <img id="image"/>
-                
-                Description<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
-                -->
-
+                Markup<h:inputTextarea value="#{fomulae.markup}" id="markup" class="form-control markup_input_class" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
 
                 <br/>
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+
             </div>
             <script>
                 FMATH.ApplicationConfiguration.setFolderUrlForFonts("fonts");
@@ -157,7 +129,9 @@
                 function getMathML_ENTITIES() {
                     if (e1 != null) {
                         // type could be CHARS, ENTITIES or UNICODE;
-                        alert(e1.mathEditor("getMathML", "ENTITIES", "true"));
+                        var markup = e1.mathEditor("getMathML", "ENTITIES", "true");
+                        document.getElementsByClassName("markup_input_class")[0].value = markup;
+                        console.log(markup);
                     }
                 }
                 function getMathML_UNICODE() {

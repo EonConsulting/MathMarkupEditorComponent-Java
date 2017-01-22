@@ -60,6 +60,9 @@ public class Fomulae implements Serializable {
     @NotNull
     @Column(name = "description")
     private String description;
+    @NotNull
+    @Column(name="markup")
+    private String markup;
 
     public Fomulae() {
     }
@@ -119,6 +122,14 @@ public class Fomulae implements Serializable {
 
     public void setActiveInd(boolean activeInd) {
         this.activeInd = activeInd;
+    }
+
+    public String getMarkup() {
+        return markup;
+    }
+
+    public void setMarkup(String markup) {
+        this.markup = markup;
     }
 
     @Override

@@ -30,7 +30,7 @@ import javax.persistence.PersistenceUnit;
  * @author Mbaka Motale
  */
 public class FomulaeController implements Serializable {
-    
+
     private static final Logger LOGGER = Logger.getLogger(FomulaeController.class.getName());
 
     public FomulaeController() {
@@ -42,6 +42,7 @@ public class FomulaeController implements Serializable {
     private FomulaeFacade jpaController = null;
     private FomulaeConverter converter = null;
     private PagingInfo pagingInfo = null;
+    private String markup;
     @Resource
     private UserTransaction utx = null;
     @PersistenceUnit(unitName = "MathComponentPU")
@@ -80,6 +81,19 @@ public class FomulaeController implements Serializable {
         return fomulae;
     }
 
+    public String getMarkup() {
+        return markup;
+    }
+
+    public void setMarkup(String markup) {
+        this.markup = markup;
+    }
+
+    public void displayMarkup() {
+        System.out.println("Markup Value: " + markup);
+        //return null;
+    }
+
     public String listSetup() {
         reset(true);
         return "/crud/fomulae/List.xhtml";
@@ -100,6 +114,8 @@ public class FomulaeController implements Serializable {
             Exception transactionException = null;
             fomulae.setActiveInd(false);
             fomulae.setSubjectId(1);
+            fomulae.setMarkup(markup);
+            System.out.println("marku up value: "+markup);
             getJpaController().create(fomulae);
             try {
                 utx.commit();
@@ -290,5 +306,5 @@ public class FomulaeController implements Serializable {
     public Converter getConverter() {
         return converter;
     }
-    
+
 }
