@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
+    <head>
         <title> UNISA | LaTeX Editor</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -29,8 +29,13 @@
         <script src="fonts/fmathFormulaFonts.js"></script>
         <script src="js/fmathEditorC.js"></script>
         <script src="js/fmathEditorJQuery.js"></script>
+
+        <script type="text/javascript"
+                src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
+    </head>
     <h:body onload="openEditor()">
         <h:form>
 
@@ -56,11 +61,11 @@
                                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
                 <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set LaTeX"/>
 
-                <h:commandButton onclick="getMathML_ENTITIES(),getPng() ;" style="margin-left: 55px;" value="Save Formula Java" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+                <h:commandButton onclick="getMathML_ENTITIES(), getPng();" style="margin-left: 55px;" value="Save Formula Java" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
 
                 </h:commandButton>
 
-                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access Saved Fomulae" target="_blank"/>
+                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access and print Saved Fomulae" target="_blank"/>
 
 
                 <hr/>
@@ -76,7 +81,7 @@
                 <br/><br/>
 
                 Description:<h:inputTextarea value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
-                Markup<h:inputTextarea value="#{fomulae.markup}" id="markup" class="form-control markup_input_class" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
+                Markup<h:inputText value="#{fomulae.markup}" id="markup" class="form-control markup_input_class" style="margin-bottom: 20px; width: 50px; height: 40px;" />
 
                 <br/>
 
@@ -90,7 +95,7 @@
                     if (e1 == null) {
                         e1 = $("#editor1").mathEditor({width: 1000, height: 400});
                         e1.mathEditor("setSaveCallback", clientSaveMethod);
-                        e1.mathEditor("setMathML", '<math mathsize="40"><mi>X</mi><mo>+</mo><mi>Y</mi></math>');
+                        e1.mathEditor("setMathML",'<math><mi>X</mi><mo>+</mo><mi>Y</mi></math>');
                     }
                 }
 
@@ -131,7 +136,7 @@
                         // type could be CHARS, ENTITIES or UNICODE;
                         var markup = e1.mathEditor("getMathML", "ENTITIES", "true");
                         document.getElementsByClassName("markup_input_class")[0].value = markup;
-                        console.log(markup);
+                        //console.log(markup);
                     }
                 }
                 function getMathML_UNICODE() {
