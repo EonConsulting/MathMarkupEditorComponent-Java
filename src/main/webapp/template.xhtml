@@ -5,19 +5,64 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
+
+        <style>
+            .center {
+                text-align: right;
+                color: blue;
+
+            }
+            .center a{
+
+                text-align: right;
+                color: black ;
+                text-decoration: none;
+            }
+            
+            img{
+                
+                width: 30px;
+                height: 30px;
+                
+            }
+            
+        </style>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
-         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
+
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            "HTML-CSS": { scale: 200}
+            });
+        </script>
+
+        <script>
+            function doit() {
+                if (!window.print) {
+                    alert("You need NS4.x to use this print button!")
+                    return
+                }
+                window.print()
+            }
+        </script>
+
     </h:head>
 
     <h:body>
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
+        <center>
+            <div class="center">
+                <a href="javascript:doit()"><img src="images/icon-48-print.png" style="margin-left: 55px;" class="btn btn-danger btn-xs" title="Save Page to PDF">Save Page to PDF</img></a>
+            </div>
+            <h1>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h1>
+            <p>
+                <ui:insert name="body">Default Body</ui:insert>
+            </p>
+        </center>
     </h:body>
 
 </html>

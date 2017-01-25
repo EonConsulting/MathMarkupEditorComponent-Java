@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
-       
+
 
     </h:head>
 
@@ -21,48 +21,51 @@
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                     </h:panelGroup>
                     <h:outputText escape="false" value="#{bundle.ListIncidentEmpty}" rendered="#{jobController.items.rowCount == 0}"/>
-                    <h3>List Of Saved Fomulae From Database </h3>
-                    <h:dataTable value="#{fomulae.fomulaeItems}" var="item" border="5" width="1000" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 2px">
+                    <h3>List of Formulae </h3>
+                    <h:dataTable value="#{fomulae.fomulaeItems}" var="item" border="0" width="100" cellpadding="50" cellspacing="40" rowClasses="jsfcrud_odd_row,jsfcrud_even_row">
 
-                        <!--                    <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="Id"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.id}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="BaseString Image"/>
-                                                </f:facet>
-                                                <img  src="#{item.baseString}" alt="Profile Picture" />
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="SubjectId"/>
-                                                </f:facet>
-                                                <h:outputText value="#{item.subjectId}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    <h:outputText value="ActiveInd"/>
-                                                </f:facet>
-                                                <h:selectBooleanCheckbox disabled="true" value="#{item.activeInd}"/>
-                                            </h:column>-->
+                        
+                        <!--                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="BaseString Image"/>
+                            </f:facet>
+                            <img  src="#{item.baseString}" alt="Profile Picture" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="SubjectId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subjectId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ActiveInd"/>
+                            </f:facet>
+                            <h:selectBooleanCheckbox disabled="true" value="#{item.activeInd}"/>
+                        </h:column>-->
+                        
+                        
+                        <h:column>
+                            <f:facet name="header" >
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
 
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="description"/>
+                                <h:outputText value="Description"/>
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </h:column>
-                          
+
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText  value="Markup"/>
+                                <h:outputText  value="Formula"/>
                             </f:facet>
                             <h:outputText value="#{item.markup}" escape="false"/>
                         </h:column>
-                        
+
                     </h:dataTable>
                 </h:form>
             </ui:define>
