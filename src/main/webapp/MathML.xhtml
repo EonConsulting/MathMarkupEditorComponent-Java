@@ -4,8 +4,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>UNISA | MathML Editor</title>
+    <head>
+        <title> UNISA | MathML Editor</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -29,82 +29,65 @@
         <script src="fonts/fmathFormulaFonts.js"></script>
         <script src="js/fmathEditorC.js"></script>
         <script src="js/fmathEditorJQuery.js"></script>
+
+        <script type="text/javascript"
+                src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
+    </head>
     <h:body onload="openEditor()">
+  
         <h:form>
 
             <br/>
             <div style="width:72%; margin:0 auto;">
-                
-                <select onchange="location=this.value" style="width: 150px; color: orange;background:#346692; height: 25px; border-radius: 5px;">
-                    <option value="#">Select Editor</option>
-                    <option value="MathML.xhtml"> MathML Editor</option>
-                    <option value="LaTeX.xhtml"> LaTeX Editor</option>
-                </select>
-                     &nbsp;
-                     &nbsp;
-                     &nbsp;
-                     &nbsp;
-<!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show MathML Editor"/>-->
-<!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
-                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
-                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
-                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>
-                <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
-                <input type="button" class="btn btn-primary btn-xs" onclick="setMathML()" value="Set MathML"/>
 
-                <h:commandButton onclick="getPng();" style="margin-left: 55px;" value="Save Formula" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
-                    <f:ajax execute="@form" render="text" />
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                <br/>
+                <select onchange="location = this.value" style="width: 150px; color: orange;background: #346692; height: 25px; border-radius: 5px;">
+                    <option value="#">Select Editor</option>
+                    <option value="MathML.xhtml">MathML Editor</option>
+                    <!--                    <option value="MathML.xhtml">MathMLLa Editor</option>-->
+                </select>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <!--                <input type="button" class="btn btn-primary btn-xs" onclick="openEditor()" value="Show LaTeX Editor"/>-->
+                <!--                <input type="button" class="btn btn-primary btn-xs" onclick="changeMathML()" value="Change MathML"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_CHARS()" value="Get MathML Char"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_ENTITIES()" value="Get MathML Entities"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="getMathML_UNICODE()" value="Get MathML Unicode"/>
+                                <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set Latex"/>-->
+                <!--                <input type="button" class="btn btn-primary btn-xs" onclick="setLatex()" value="Set LaTeX"/>-->
+
+                <h:commandButton onclick="getMathML_ENTITIES(), getPng();" style="margin-left: 55px;" value="Save Formula Java" class="btn btn-danger btn-xs"  action="#{fomulae.create()}">
+
                 </h:commandButton>
-                
-                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access Saved Fomulae" target="_blank"/>
-     
+
+                <h:commandLink immediate="true" action="#{fomulae.listSetup}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Access and print Saved Fomulae" target="_blank"/>
+
+
                 <hr/>
-                
+
                 <div id="editor1" style="margin-top: 20px;"></div>
-                
+
                 <hr/>
-                
-                
-               Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px;height: 0px;"/>
+
+
+                <h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px; width: 0px;height: 0px;"/>
                 <img id="image"/>
 
                 <br/><br/>
 
-                Description:<h:inputTextarea value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px; width: 1000px; height: 200px;" />
+                Description:<h:inputTextarea value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px; width: 400px; height: 200px;" />
 
-<!--                <table class="table table-bordered">
-                    <tr class="info">
-                        <td><strong>Math ML</strong></td>
-                        <td><Strong>LaTeX</Strong></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <textarea id="textarea" style="width: 965px; height: 170px; margin: 0px;">
-&lt;math mathsize='40'&gt;
-	&lt;mtext&gt;AB&lt;/mtext&gt;
-	&lt;mo&gt;&#xB1;&lt;/mo&gt;
-	&lt;mtext&gt;CD&lt;/mtext&gt;
-&lt;/math&gt;
-                            </textarea>
-                        </td>
+                <h:inputText value="#{fomulae.markup}" id="markup" class="form-control markup_input_class" style="margin-bottom: 20px; width: 0px; height: 0px;" />
 
-                        <td>
-                            <textarea id="textareaL" style="width: 465px; height: 270px; margin: 0px;">\[x^2+2x+1\]</textarea>
-                        </td>
-                    </tr>
-                </table>-->
                 <br/>
-<!--                Image:<h:inputText value="#{fomulae.fomulae.baseString}" id="text" class="imageClass form-control" style="margin-bottom: 20px;"/>
-                <img id="image"/>
-                
-                Description<h:inputText value="#{fomulae.fomulae.description}" id="description" class="imageClass form-control" style="margin-bottom: 20px;"/>
-               -->
 
-                
-                <br/>
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </div>
             <script>
                 FMATH.ApplicationConfiguration.setFolderUrlForFonts("fonts");
@@ -115,7 +98,7 @@
                     if (e1 == null) {
                         e1 = $("#editor1").mathEditor({width: 1000, height: 400});
                         e1.mathEditor("setSaveCallback", clientSaveMethod);
-                        e1.mathEditor("setMathML", '<math mathsize="40"><mi>X</mi><mo>+</mo><mi>Y</mi></math>');
+                        e1.mathEditor("setMathML", '<math><mi>X</mi><mo>+</mo><mi>Y</mi></math>');
                     }
                 }
 
@@ -124,10 +107,10 @@
                     getPng();
                 }
 
-                function setMathML() {
+                function setLatex() {
                     if (e1 != null) {
-                        var ta = document.getElementById("textarea");
-                        e1.mathEditor("setMathML", ta.value);
+                        var ta = document.getElementById("textareaL");
+                        e1.mathEditor("setLatex", ta.value);
                     }
                 }
 
@@ -154,7 +137,9 @@
                 function getMathML_ENTITIES() {
                     if (e1 != null) {
                         // type could be CHARS, ENTITIES or UNICODE;
-                        alert(e1.mathEditor("getMathML", "ENTITIES", "true"));
+                        var markup = e1.mathEditor("getMathML", "ENTITIES", "true");
+                        document.getElementsByClassName("markup_input_class")[0].value = markup;
+                        //console.log(markup);
                     }
                 }
                 function getMathML_UNICODE() {
