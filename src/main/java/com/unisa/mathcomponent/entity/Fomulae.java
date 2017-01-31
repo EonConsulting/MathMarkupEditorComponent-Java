@@ -154,7 +154,7 @@ public class Fomulae implements Serializable {
 
     @Override
     public String toString() {
-        return "com.unisa.mathcomponent.entity.Fomulae[ id=" + id + " ]";
+        return "Fomulae{" + "id=" + id + ", baseString=" + baseString + ", subjectId=" + subjectId + ", activeInd=" + activeInd + ", description=" + description + ", markup=" + markup + '}';
     }
     
 }

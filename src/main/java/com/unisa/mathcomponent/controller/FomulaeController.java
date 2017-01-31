@@ -37,7 +37,8 @@ public class FomulaeController implements Serializable {
         pagingInfo = new PagingInfo();
         converter = new FomulaeConverter();
     }
-    private Fomulae fomulae = null;
+    private Fomulae fomulae = new Fomulae();
+    private Fomulae selectedFoumula = new Fomulae();
     private List<Fomulae> fomulaeItems = null;
     private FomulaeFacade jpaController = null;
     private FomulaeConverter converter = null;
@@ -47,6 +48,8 @@ public class FomulaeController implements Serializable {
     private UserTransaction utx = null;
     @PersistenceUnit(unitName = "MathComponentPU")
     private EntityManagerFactory emf = null;
+    private String markupValue = null;
+    private String formulaID = null;
 
     public PagingInfo getPagingInfo() {
         if (pagingInfo.getItemCount() == -1) {
@@ -71,6 +74,14 @@ public class FomulaeController implements Serializable {
         return JsfUtil.getSelectItems(getJpaController().findAll(), true);
     }
 
+    public Fomulae getSelectedFoumula() {
+        return selectedFoumula;
+    }
+
+    public void setSelectedFoumula(Fomulae selectedFoumula) {
+        this.selectedFoumula = selectedFoumula;
+    }
+
     public Fomulae getFomulae() {
         if (fomulae == null) {
             fomulae = (Fomulae) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentFomulae", converter, null);
@@ -89,20 +100,69 @@ public class FomulaeController implements Serializable {
         this.markup = markup;
     }
 
+    public String getMarkupValue() {
+        return markupValue;
+    }
+
+    public void setMarkupValue(String markupValue) {
+        this.markupValue = markupValue;
+    }
+
+    public String getFormulaID() {
+        return formulaID;
+    }
+
+    public void setFormulaID(String formulaID) {
+        this.formulaID = formulaID;
+    }
+
     public void displayMarkup() {
         System.out.println("Markup Value: " + markup);
         //return null;
     }
 
+    public String defaultMarkup() {
+        try {
+            Integer id = Integer.valueOf(formulaID);
+            Fomulae initMarkup = getJpaController().find(id);
+            markupValue = initMarkup.getMarkup();
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            fomulae = new Fomulae();
+            return "'<math><mtext>X+Y</mtext></math>'";
+        }
+        return "'" + markupValue + "'";
+    }
+
+    public String editFomula() {
+        fomulae = selectedFoumula;
+        System.out.println("listing view");
+        return "/MathML.xhtml";
+    }
+
     public String listSetup() {
         reset(true);
-        return "/crud/fomulae/List.xhtml";
+        return "/List.xhtml";
+    }
+
+    public String prapareEditor() {
+        fomulae = new Fomulae();
+        formulaID = null;
+        return "/MathML.xhtml";
     }
 
     public String createSetup() {
         reset(false);
         fomulae = new Fomulae();
         return "/crud/fomulae/New.jsp";
+    }
+
+    public boolean updateCreate() {
+        if (fomulae == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String create() {
@@ -115,10 +175,11 @@ public class FomulaeController implements Serializable {
             fomulae.setActiveInd(false);
             fomulae.setSubjectId(1);
             fomulae.setMarkup(markup);
-            System.out.println("marku up value: "+markup);
+            System.out.println("marku up value: " + markup);
             getJpaController().create(fomulae);
             try {
                 utx.commit();
+                formulaID = String.valueOf(fomulae.getId());
             } catch (javax.transaction.RollbackException ex) {
                 LOGGER.log(Level.SEVERE, "Exception occur ", ex);
                 transactionException = ex;
@@ -145,11 +206,11 @@ public class FomulaeController implements Serializable {
     }
 
     public String detailSetup() {
-        return scalarSetup("fomulae_detail");
+        return scalarSetup("MathML.xhtml");
     }
 
     public String editSetup() {
-        return scalarSetup("fomulae_edit");
+        return scalarSetup("MathML.xhtml");
     }
 
     private String scalarSetup(String destination) {
@@ -164,21 +225,14 @@ public class FomulaeController implements Serializable {
     }
 
     public String edit() {
-        String fomulaeString = converter.getAsString(FacesContext.getCurrentInstance(), null, fomulae);
-        String currentFomulaeString = JsfUtil.getRequestParameter("jsfcrud.currentFomulae");
-        if (fomulaeString == null || fomulaeString.length() == 0 || !fomulaeString.equals(currentFomulaeString)) {
-            String outcome = editSetup();
-            if ("fomulae_edit".equals(outcome)) {
-                JsfUtil.addErrorMessage("Could not edit fomulae. Try again.");
-            }
-            return outcome;
-        }
+
         try {
             utx.begin();
         } catch (Exception ex) {
         }
         try {
             Exception transactionException = null;
+            fomulae.setMarkup(markup);
             getJpaController().edit(fomulae);
             try {
                 utx.commit();
@@ -199,7 +253,7 @@ public class FomulaeController implements Serializable {
             JsfUtil.ensureAddErrorMessage(e, "A persistence error occurred.");
             return null;
         }
-        return detailSetup();
+        return "";
     }
 
     public String remove() {

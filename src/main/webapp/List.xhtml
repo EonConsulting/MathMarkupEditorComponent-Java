@@ -21,9 +21,10 @@
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                     </h:panelGroup>
 
-                    
+                    <h:commandLink immediate="true" action="#{fomulae.prapareEditor()}" style="margin-left: 55px;" class="btn btn-danger btn-xs" value="Go Back" />
+
+
                     <h3>List of Formulae </h3>
-                    <h:commandLink immediate="true" action="#{fomulae.prapareEditor()}" style="margin-left: 55px;" class="btn btn-danger btn-xs pull-left" value="Go Back" />
                     <h:dataTable value="#{fomulae.fomulaeItems}" var="item" border="0" width="100" cellpadding="50" cellspacing="40" rowClasses="jsfcrud_odd_row,jsfcrud_even_row">
 
 
